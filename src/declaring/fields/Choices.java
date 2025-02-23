@@ -1,4 +1,4 @@
-package implementing.fields;
+package declaring.fields;
 
 /**
  * El único tipo de campo que se permite declarar en una interface es
