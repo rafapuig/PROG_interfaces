@@ -1,4 +1,4 @@
-package intro;
+package intro.badsolutions;
 
 public class WalkablesTest {
 

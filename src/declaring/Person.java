@@ -1,7 +1,9 @@
-package intro.badsolutions;
+package declaring;
 
-public class Person {
-    private String name;
+
+public class Person implements Walkable {
+
+    private final String name;
 
     public Person(String name) {
         this.name = name;

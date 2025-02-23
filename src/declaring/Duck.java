@@ -1,11 +1,13 @@
-package intro.badsolutions;
+package declaring;
 
 /**
  * Antes de crear la clase Duck, solamente los objetos Person podían caminar
  * Ahora los objetos Duck también tienen ese comportamiento
  */
-public class Duck {
+public class Duck implements Walkable {
+
     private final String name;
+
     public Duck(String name) {
         this.name = name;
     }

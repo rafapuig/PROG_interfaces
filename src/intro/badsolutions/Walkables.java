@@ -1,4 +1,4 @@
-package intro;
+package intro.badsolutions;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

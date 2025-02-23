@@ -1,4 +1,4 @@
-package intro.badsolutions;
+package intro;
 
 /**
  * Todos los objetos que pueden caminar deberían implementar la interface Walkable

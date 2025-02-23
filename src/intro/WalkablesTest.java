@@ -1,32 +1,35 @@
-package intro.badsolutions;
+package intro;
+
+import intro.badsolutions.Duck;
+import intro.badsolutions.Person;
+import intro.badsolutions.Walkables;
 
 public class WalkablesTest {
 
     public static void main(String[] args) {
-        testWalkableOnlyPersons();
         testWalkablePersonsAndDucks();
-    }
-
-    private static void testWalkableOnlyPersons() {
-        Person[] people = new Person[3];
-        people[0] = new Person("Perico Palotes");
-        people[1] = new Person("Paco Jones");
-        people[2] = new Person("Belen Tilla");
-
-        // Hacer que todas las personas caminen
-        Walkables.letThemWalk(people);
+        testWalkablePersonsDucksAndCats();
     }
 
     private static void testWalkablePersonsAndDucks() {
-        Object[] list = new Object[4];
-        list[0] = new Person("Perico Palotes");
-        list[1] = new Duck("Pato Donald");
-        list[2] = new Person("Belen Tilla");
-        list[3] = new Object(); // No tiene el método "walk"
+        Object[] walkables = new Object[3];
+        walkables[0] = new Person("Perico Palotes");
+        walkables[1] = new Duck("Pato Donald");
+        walkables[2] = new Person("Belen Tilla");
 
         // Hacer que todos los objetos caminen
-        Walkables.letThemWalk(list);
+        Walkables.letThemWalk(walkables);
     }
 
+    private static void testWalkablePersonsDucksAndCats() {
+        Object[] walkables = new Object[4];
+        walkables[0] = new Person("Perico Palotes");
+        walkables[1] = new Duck("Pato Donald");
+        walkables[2] = new Person("Belen Tilla");
+        walkables[3] = new Cat("Garfield");
+
+        // Hacer que todos los objetos caminen
+        Walkables.letThemWalk(walkables);
+    }
 
 }
