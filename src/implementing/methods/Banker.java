@@ -51,9 +51,11 @@ class UnstablePredictableBank implements Banker {
     }
 
     // No se pueden añadir nuevas excepciones a la lista de un método que implementa
-    // un metodo de la interface
+    // un método de la interface
     @Override
     //public void deposit(double amount) throws FundLimitExceededException, ArbitraryException { } // No compila
+    //protected void deposit(double amount) throws FundLimitExceededException { } // No compila
+    //private void deposit(double amount) throws FundLimitExceededException { } // No compila
     public void deposit(double amount) throws FundLimitExceededException { }
 }
 
@@ -62,7 +64,7 @@ class BankingTest {
     public static void main(String[] args) {
         testWithInterfaceReferenceType();
         testWithImplementerClassType();
-
+        testWithInterfaceTypeArbitrary();
     }
 
     private static void testWithInterfaceReferenceType() {
