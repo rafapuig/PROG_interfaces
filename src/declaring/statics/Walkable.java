@@ -1,4 +1,4 @@
-package declaring;
+package declaring.statics;
 
 /**
  * Todos los objetos que pueden caminar deberían implementar la interface Walkable

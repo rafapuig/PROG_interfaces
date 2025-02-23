@@ -1,6 +1,6 @@
 package implementing.multiple;
 
-import declaring.Walkable;
+import declaring.statics.Walkable;
 import referencetype.Swimmable;
 
 class Turtle implements Walkable, Swimmable {

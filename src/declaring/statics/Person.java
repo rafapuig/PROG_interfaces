@@ -1,4 +1,4 @@
-package declaring;
+package declaring.statics;
 
 
 public class Person implements Walkable {
