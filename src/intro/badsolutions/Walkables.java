@@ -10,9 +10,8 @@ public class Walkables {
 
     /**
      * Al declarar el parámetro de entrada como un array de Person el compilador se asegura que
-     * llamar al método walk es válido, porque un objeto de tipo Persona responde al mensaje "walk"
-     *
-     * @param list
+     * llamar al método walk es válido, porque un objeto de tipo Person
+     * responde al mensaje "walk"
      */
     public static void letThemWalk(Person[] list) {
         for (int i = 0; i < list.length; i++) {
