@@ -87,6 +87,47 @@ class Melodist implements SingerWriter {
     }
 }
 
+/**
+ * Cantante que además juega con videojuegos
+ */
+interface SingerPlayer extends Singer, Player {
+    //Hay conflicto entre las dos versiones heredadas del metodo getRate
+    // de sSinger se hereda un método abstracto
+    // de Writer se hereda un método con implementación por defecto
+    // Combinación abstract-default
+
+    // Una solucion es reimplementar el método
+    // Podemos acceder a las versiones reemplazadas con el <nombre de la interfaz>.super
+    @Override
+    default double getRate() {
+        double playerRate = Player.super.getRate();
+        double singerRate = playerRate * 2.5;
+        return playerRate + singerRate;
+    }
+}
+
+interface CharitySingerPlayer extends CharitySinger, Player {
+    //En este caso heredamos dos versiones con implementación por defecto del getRate --> default-default
+    // y una abstracta y otra con implementación por defecto del setRate --> abstract-default
+
+
+    // Llamar al método getRate() de la superinterface Player
+    @Override
+    default double getRate() {
+        return Player.super.getRate();
+    }
+
+    // Reemplazarlo por un método abstracto
+    @Override
+    void setRate(double rate);
+}
+
+
+
+
+
+
+
 public class InheritanceDemo {
     public static void main(String[] args) {
         SingerWriter perales = new Melodist("Jose Luis Perales");
