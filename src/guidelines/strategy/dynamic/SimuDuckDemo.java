@@ -14,6 +14,8 @@ public class SimuDuckDemo {
 
         Duck woodenDecoyDuck = new WoodenDecoyDuck();
         testDuck(woodenDecoyDuck);
+
+        testDynamicFlyVBahavior();
     }
 
     static void testDuck(Duck duck) {
@@ -21,6 +23,17 @@ public class SimuDuckDemo {
         duck.swim();
         duck.fly();
         duck.quack();
+    }
+
+    static void testDynamicFlyVBahavior() {
+        Duck model = new ModelDuck();
+
+        model.fly();
+
+        // Cambiar el comportamiento de manera dinámica
+        model.setFlyBehavior(new FlyRocketPowered());
+
+        model.fly();
     }
 
 }
