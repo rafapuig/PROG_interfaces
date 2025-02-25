@@ -1,18 +1,26 @@
 package intro;
 
-import intro.badsolutions.Duck;
-import intro.badsolutions.Person;
-import intro.badsolutions.Walkables;
-
 public class WalkablesTest {
 
     public static void main(String[] args) {
+        testWalkable();
         testWalkablePersonsAndDucks();
         testWalkablePersonsDucksAndCats();
     }
 
+    private static void testWalkable() {
+        Walkable perico = new Person("Perico Palotes");
+        perico.walk();  // ordenar al objeto que camine
+        Walkables.letItWalk(perico); // Llamando a la clase de utilidad para que ponga a caminar al objeto
+
+        Walkable silvestre = new Cat("Silvestre");
+        silvestre.walk();
+        Walkables.letItWalk(silvestre);
+    }
+
+
     private static void testWalkablePersonsAndDucks() {
-        Object[] walkables = new Object[3];
+        Walkable[] walkables = new Walkable[3];
         walkables[0] = new Person("Perico Palotes");
         walkables[1] = new Duck("Pato Donald");
         walkables[2] = new Person("Belen Tilla");
@@ -22,7 +30,7 @@ public class WalkablesTest {
     }
 
     private static void testWalkablePersonsDucksAndCats() {
-        Object[] walkables = new Object[4];
+        Walkable[] walkables = new Walkable[4];
         walkables[0] = new Person("Perico Palotes");
         walkables[1] = new Duck("Pato Donald");
         walkables[2] = new Person("Belen Tilla");

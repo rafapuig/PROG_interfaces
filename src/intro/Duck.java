@@ -16,6 +16,4 @@ public class Duck implements Walkable {
     public void walk() {
         System.out.println(name + " (un pato) esta caminando.");
     }
-
-    /* ¿Como podemos hacer caminar a los objetos Duck mediante la clase Walkables? */
 }

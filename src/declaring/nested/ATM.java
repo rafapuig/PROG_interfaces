@@ -2,9 +2,7 @@ package declaring.nested;
 
 import java.time.LocalDate;
 
-class InsufficientFundsException extends RuntimeException {
-
-}
+class InsufficientFundsException extends RuntimeException {}
 
 interface ATM {
 

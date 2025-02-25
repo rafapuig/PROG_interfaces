@@ -15,7 +15,8 @@ public class Walkables {
      */
     public static void letThemWalk(Person[] list) {
         for (int i = 0; i < list.length; i++) {
-            list[i].walk();
+            Person person = list[i];
+            person.walk();
         }
     }
 

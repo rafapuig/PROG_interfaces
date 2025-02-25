@@ -1,9 +1,5 @@
 package intro;
 
-/**
- * Antes de crear la clase Duck, solamente los objetos Person podían caminar
- * Ahora los objetos Duck también tienen ese comportamiento
- */
 public class Cat implements Walkable {
 
     private final String name;
@@ -17,5 +13,4 @@ public class Cat implements Walkable {
         System.out.println(name + " (un gato) esta caminando.");
     }
 
-    /* ¿Como podemos hacer caminar a los objetos Duck mediante la clase Walkables? */
 }

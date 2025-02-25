@@ -8,6 +8,7 @@ public class Person implements Walkable {
         this.name = name;
     }
 
+    @Override
     public void walk() {
         System.out.println(name + " (una persona) esta caminando.");
     }
