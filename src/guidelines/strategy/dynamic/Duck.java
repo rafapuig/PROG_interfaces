@@ -2,8 +2,9 @@ package guidelines.strategy.dynamic;
 
 public abstract class Duck {
 
-    protected QuackBehavior quackBehavior = new Quack();
-    protected FlyBehavior flyBehavior = new FlyWithWings();
+    // Composición
+    protected QuackBehavior quackBehavior = new Quack(); // Tiene una forma de hace quack
+    protected FlyBehavior flyBehavior = new FlyWithWings(); // Tiene una forma de volar
 
     // Nadar
     public void swim() {
@@ -18,6 +19,7 @@ public abstract class Duck {
         flyBehavior.fly();
     }
 
+    // El metodo quack delega en su componente quackBehavior
     public void quack() {
         quackBehavior.quack();
     }
@@ -32,6 +34,5 @@ public abstract class Duck {
     public void setQuackBehavior(QuackBehavior quackBehavior) {
         this.quackBehavior = quackBehavior;
     }
-
 
 }
