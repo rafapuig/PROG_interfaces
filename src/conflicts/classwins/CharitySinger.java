@@ -11,10 +11,11 @@ interface CharitySinger extends Singer {
     // Dado que un charity singer no cobra por cantar reemplaza los métodos setRate y getRate
     @Override
     default void setRate(double rate) {
-        // No hacer nada
+        System.out.println("Estableciendo el rate desde CharitySinger...");
     }
 
     default double getRate() {
+        System.out.println("Devolviendo el rate desde CharitySinger ...");
         return 0.0;
     }
 }

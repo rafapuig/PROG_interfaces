@@ -19,4 +19,10 @@ public class Person implements Walkable {
         System.out.print(name + ": ");
         walkBehavior.walk(); // Delega en el objeto comportamiento
     }
+
+    @Override
+    public void walk(WalkBehavior walkBehavior) {
+        System.out.print(name + ": ");
+        Walkable.super.walk(walkBehavior);
+    }
 }
