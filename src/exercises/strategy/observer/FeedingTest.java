@@ -7,12 +7,15 @@ public class FeedingTest {
     static Random rand = new Random();
 
     public static void main(String[] args) {
+        testFeedByPerson();
+        testFeedByPersonAndNeighbour();
         testPersonTakingCareOfACat();
         testFeedWithMilkAnonymous();
-
-        handleFeedableHungry(new Cat("Doroteo"), FeedingTest::feedWithMilk);
-        handleFeedableHungry(new Cat("Doroteo"), feedable -> feedWith(feedable,"paté"));
+        testFeedWithMilkLambda();
+        testFeedWithMilkMethodReference();
+        testHandleFeedableHungryMethod();
     }
+
 
     static void testFeedByPerson() {
         Cat cat = new Cat("Silvestre");
@@ -21,8 +24,35 @@ public class FeedingTest {
         cat.setOnHungryListener(person);
         cat.hungry();
 
-        cat.setOnHungryListener(feedable -> person.onHungry(feedable));
-        cat.setOnHungryListener(person::onHungry);
+        // Otras formas de llamar al setOnHungryListener
+        cat.setOnHungryListener(feedable -> person.onHungry(feedable)); // Lambda
+        cat.setOnHungryListener(person::onHungry); // referncia a función
+    }
+
+    static void testFeedByPersonAndNeighbour() {
+
+        Cat cat = new Cat("Silvestre");
+        Person person = new Person("Perico Palotes");
+
+        OnHungryListener machineHungryListener = new OnHungryListener() {
+            @Override
+            public void onHungry(Feedable feedable) {
+                System.out.println("Dando de comer sobras a " + feedable);
+            }
+        };
+
+        person.adopt(cat);
+        cat.hungry();
+
+        // Lo cuida una maquina
+        person.setOnHungryBehavior(machineHungryListener);
+        cat.hungry();
+
+        // Vuelve a cuidarlo la persona
+        person.setOnHungryBehavior(person);
+
+
+
     }
 
     private static void testPersonTakingCareOfACat() {
@@ -61,7 +91,6 @@ public class FeedingTest {
         cat.hungry();
     }
 
-
     private static void testFeedWithMilkLambda() {
 
         Cat cat = new Cat("Isidoro");
@@ -76,10 +105,6 @@ public class FeedingTest {
     }
 
 
-    private static void feedWith(Feedable feedable, String food) {
-        System.out.println("Alimentando con " + food + " a " + feedable);
-        feedable.eat(food);
-    }
 
     private static void feedWithMilk(Feedable feedable) {
         System.out.println("Alimentando a " + feedable + " con leche");
@@ -97,7 +122,23 @@ public class FeedingTest {
     }
 
 
+
+    private static void feedWith(Feedable feedable, String food) {
+        System.out.println("Alimentando con " + food + " a " + feedable);
+        feedable.eat(food);
+    }
+
     static void handleFeedableHungry(Feedable feedable, OnHungryListener onHungryListener) {
         onHungryListener.onHungry(feedable);
     }
+
+    private static void testHandleFeedableHungryMethod() {
+        handleFeedableHungry(new Cat("Doroteo"), FeedingTest::feedWithMilk);
+        handleFeedableHungry(new Cat("Isidoro"), feedable -> feedWith(feedable,"paté"));
+
+        OnHungryListener feedWithTuna = feedlable -> feedWith(feedlable, "atún");
+        handleFeedableHungry(new Cat("Tom"), feedWithTuna);
+    }
+
 }
+
