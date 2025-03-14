@@ -17,8 +17,8 @@ public class StringUtils {
     /**
      * Indica si el texto tiene color de fondo
      */
-    public boolean isBackgroundColored(String text) {
-        String regex = ".*\033\\[\\d{2}m.*";
+    public static boolean isBackgroundColored(String text) {
+        String regex = ".*(\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m).*";
         return text.matches(regex);
     }
 
@@ -26,7 +26,7 @@ public class StringUtils {
      * Obtiene el color de fondo
      */
     public static String getBackgroundColor(String text) {
-        String regex = ".*(\033\\[\\d{2}m).*";
+        String regex = ".*(\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m).*";
         return text.replaceAll(regex, "$1");
     }
 
@@ -43,7 +43,7 @@ public class StringUtils {
      * Indica si el texto contiene información de color
      */
     public static boolean containsColorInfo(String text) {
-        String regex = ".*\033\\[(\\d{1};)?\\d{2}m.*";
+        String regex = ".*\033\\[(\\d{1};)?\\d{2,3}m.*";
         return text.matches(regex);
     }
 
@@ -295,12 +295,12 @@ class StringUtilsTest {
     @Test
     public void testGetBackgroundColor() {
         String text = "Hola";
-        text = text.colored(ConsoleColors.BLUE_BACKGROUND);
+        text = text.colored(ConsoleColors.YELLOW_BACKGROUND);
         System.out.println(text);
         String backcolor = text.getBackgroundColor();
-        System.out.println(backcolor.equals(ConsoleColors.BLUE_BACKGROUND));
+        System.out.println(backcolor.equals(ConsoleColors.YELLOW_BACKGROUND));
         System.out.println(backcolor.length());
-
+        System.out.println(text.isBackgroundColored());
     }
 
     @Test
