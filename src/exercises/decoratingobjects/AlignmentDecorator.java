@@ -2,7 +2,7 @@ package exercises.decoratingobjects;
 
 import lombok.experimental.ExtensionMethod;
 
-@ExtensionMethod(StringUtils.class)
+@ExtensionMethod(ColorStringUtils.class)
 public class AlignmentDecorator extends ObjectDecorator {
 
     public enum Alignment {START, CENTER, END}
@@ -21,8 +21,8 @@ public class AlignmentDecorator extends ObjectDecorator {
         String text = object.toString();
         return switch (alignment) {
             case START -> text.startAligned(width);
-            case CENTER -> StringUtils.centerAligned(object.toString(), width);
-            case END -> StringUtils.endAligned(object.toString(), width);
+            case CENTER -> ColorStringUtils.centerAligned(object.toString(), width);
+            case END -> ColorStringUtils.endAligned(object.toString(), width);
         };
     }
 }

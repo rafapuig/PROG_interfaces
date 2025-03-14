@@ -3,7 +3,7 @@ package exercises.decoratingobjects;
 
 import lombok.experimental.ExtensionMethod;
 
-@ExtensionMethod(StringUtils.class)
+@ExtensionMethod(ColorStringUtils.class)
 public class EllipsedDecorator extends ObjectDecorator {
 
     private final String ellipse = "...";

@@ -14,7 +14,7 @@ public class BoxedDecorator extends ObjectDecorator {
     @Override
     public String toString() {
         String text = object.toString();
-        int length = StringUtils.printedLength(text);
+        int length = ColorStringUtils.printedLength(text);
         String top = "─".repeat(length);
         return topLeft + top + topRight + "\n" + "│" + text + "│\n" + bottomLeft + top + bottomRight;
     }

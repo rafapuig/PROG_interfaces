@@ -4,7 +4,25 @@ import lombok.experimental.ExtensionMethod;
 import org.junit.jupiter.api.Test;
 
 
-public class StringUtils {
+public class ColorStringUtils {
+
+    private static final String BACKGROUND_COLOR_REGEX = ".*(\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m).*";
+
+
+    /**
+     * Indica si el texto tiene color de fondo
+     */
+    public static boolean isBackgroundColored(String text) {
+        return text.matches(BACKGROUND_COLOR_REGEX);
+    }
+
+    /**
+     * Obtiene el color de fondo
+     */
+    public static String getBackgroundColor(String text) {
+        return text.replaceAll(BACKGROUND_COLOR_REGEX, "$1");
+    }
+
 
     /**
      * Indica si el texto tiene color
@@ -12,22 +30,6 @@ public class StringUtils {
     public static boolean isColored(String text) {
         String regex = ".*\033\\[\\d{1};\\d{2}m.*";
         return text.matches(regex);
-    }
-
-    /**
-     * Indica si el texto tiene color de fondo
-     */
-    public static boolean isBackgroundColored(String text) {
-        String regex = ".*(\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m).*";
-        return text.matches(regex);
-    }
-
-    /**
-     * Obtiene el color de fondo
-     */
-    public static String getBackgroundColor(String text) {
-        String regex = ".*(\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m).*";
-        return text.replaceAll(regex, "$1");
     }
 
     /**
@@ -230,8 +232,10 @@ public class StringUtils {
 
 }
 
-@ExtensionMethod(StringUtils.class)
-class StringUtilsTest {
+
+
+@ExtensionMethod(ColorStringUtils.class)
+class ColorStringUtilsTest {
 
     @Test
     public void testColored() {
