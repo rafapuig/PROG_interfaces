@@ -1,6 +1,7 @@
 package exercises.decorator.labeling;
 
 public class BoxedDecorator extends LabelDecorator{
+
     public BoxedDecorator(Label label) {
         super(label);
     }
