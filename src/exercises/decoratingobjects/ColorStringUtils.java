@@ -188,17 +188,12 @@ public class ColorStringUtils {
 
     public static String ellipsed3(String text, int width) {
 
-        int printedWidth = Math.max(width, ELLIPSIS.length());
-        int totalLength = text.length();
-        System.out.println("Total length: " + totalLength);
-        System.out.println("Printed length: " + printedLength(text));
+        final int ellipsisLength = ELLIPSIS.length();
+        final int targetWidth = Math.max(width, ellipsisLength);
+        final int printedLength = printedLength(text);
 
-        int targetWidth = targetWidth(text, printedWidth);
-        System.out.println("Target width: " + targetWidth);
-
-        if (totalLength > targetWidth) {
-            int ellipsisLength = ELLIPSIS.length();
-            String substring = subColoredString(text,0, printedWidth - ellipsisLength);
+        if (printedLength > width) {
+            String substring = subColoredString(text,0, targetWidth - ellipsisLength);
             return substring + ELLIPSIS + (containsColorInfo(text) ? ConsoleColors.RESET : "");
         }
         return text;
@@ -209,9 +204,14 @@ public class ColorStringUtils {
         return text.replaceAll(regex, "");
     }
 
+    public static String removeAllColors(String text) {
+        String regex = "\u001B\\[\\d;\\d{2}m";
+        return text.replaceAll(regex, "");
+    }
+
     public static String colored(String text, String color) {
-        return color + removeAllResets(text) + ConsoleColors.RESET;
-        // + (!isColored(text) ? ConsoleColors.RESET : "");
+        String newText = isBackgroundColored(color) ? text : removeAllColors(text);
+        return color + removeAllResets(newText) + ConsoleColors.RESET;
     }
 
     public static int lengthWithoutReset(String text) {
@@ -339,9 +339,25 @@ class ColorStringUtilsTest {
 
         text = text.ellipsed3(9);
         text = text.centerAligned(20);
-        //text = text.colored(ConsoleColors.PURPLE_BACKGROUND);
+        text = text.colored(ConsoleColors.PURPLE_BACKGROUND);
         System.out.println("->" + text + "<-");
+    }
 
+    @Test
+    public void testEllipsed3() {
+        String text = "Hola mundo";
+        text = text.colored(ConsoleColors.RED_BOLD_BRIGHT);
+        //text = text.colored(ConsoleColors.YELLOW_BACKGROUND);
+        //text = text.removeAllColors();
+        //text = text.removeAllResets();
+        text = text.colored(ConsoleColors.CYAN_BOLD_BRIGHT);
+        //text = text.colored(ConsoleColors.GREEN_BACKGROUND_BRIGHT);
+        //text = text.ellipsed3(9);
+        System.out.println(text.length());
+        System.out.println(text);
+        for (int i = 0; i < text.length(); i++) {
+            System.out.println(text.charAt(i));
+        }
     }
 
 }
