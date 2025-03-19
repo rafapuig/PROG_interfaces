@@ -209,8 +209,16 @@ public class ColorStringUtils {
         return text.replaceAll(regex, "");
     }
 
+    public static String removeAllBackColors(String text) {
+        String regex = "\033\\[\\d{2}m|\033\\[\\d{1};\\d{3}m";
+        return text.replaceAll(regex, "");
+    }
+
+
+
     public static String colored(String text, String color) {
-        String newText = isBackgroundColored(color) ? text : removeAllColors(text);
+        //TODO: Change also background
+        String newText = isBackgroundColored(color) ? removeAllBackColors(text) : removeAllColors(text);
         return color + removeAllResets(newText) + ConsoleColors.RESET;
     }
 
@@ -284,7 +292,7 @@ class ColorStringUtilsTest {
         text1 = text1.colored(ConsoleColors.YELLOW_BOLD_BRIGHT);
         text2 = text2.colored(ConsoleColors.GREEN_BOLD_BRIGHT);
 
-        String text = text1 + "<> " + text2; //text1.concat(" <> ").concat(text2);
+        String text = text1 + " <> " + text2; //text1.concat(" <> ").concat(text2);
 
         System.out.println(text);
 
@@ -347,11 +355,11 @@ class ColorStringUtilsTest {
     public void testEllipsed3() {
         String text = "Hola mundo";
         text = text.colored(ConsoleColors.RED_BOLD_BRIGHT);
-        //text = text.colored(ConsoleColors.YELLOW_BACKGROUND);
+        text = text.colored(ConsoleColors.YELLOW_BACKGROUND);
         //text = text.removeAllColors();
         //text = text.removeAllResets();
         text = text.colored(ConsoleColors.CYAN_BOLD_BRIGHT);
-        //text = text.colored(ConsoleColors.GREEN_BACKGROUND_BRIGHT);
+        text = text.colored(ConsoleColors.GREEN_BACKGROUND_BRIGHT);
         //text = text.ellipsed3(9);
         System.out.println(text.length());
         System.out.println(text);
